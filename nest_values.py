@@ -9,7 +9,7 @@ gabor_folder = 'gabor_outputs'
 
 
 #Simulation 
-image_selected = '/sinusoid.png'
+image_selected = '/big.png'
 images_to_simulate = [input_images_path + image_selected ] 
 
  
@@ -21,14 +21,14 @@ ms_steady_state_simulation = 0.0
 lateral_connections = True
 
 #Size
-num_hipercolumns = 7
+num_hipercolumns = 9
 columns_in_hipercolumns = 10
 x_cortex_size = num_hipercolumns * columns_in_hipercolumns 
 y_cortex_size = num_hipercolumns * columns_in_hipercolumns
 cortex_size = x_cortex_size * y_cortex_size
 
 #Gabor
-K_size = 700; Lambda = 100 / 4 ;Psi = 0 ;Sigma = Lambda * 0.36; Gamma = 0.7 
+K_size = 900; Lambda = 100 / 4 ;Psi = 0 ;Sigma = Lambda * 0.36; Gamma = 0.7 
 cut_pixels = 0
 get_output_gabors = 0
 max_rescaling_factor_gabor = 80
@@ -100,10 +100,10 @@ rescale = 2.0 ; radius_lat = 2.5
 
 # Short lateral connections
 ratio_inh_exc_w = 4.0
-p_center_inh_exc = 0.6 ;        weight_inh_exc = - ratio_inh_exc_w * 0.75
+p_center_inh_exc = 0.8 ;        weight_inh_exc = - ratio_inh_exc_w * 0.75
 p_center_inh_inh = 0.1 ;        weight_inh_inh = - ratio_inh_exc_w * 0.1
 p_center_exc_exc = 0.4 ;        weight_exc_exc =  0.4
-p_center_exc_inh = 0.5 ;        weight_exc_inh =  0.6
+p_center_exc_inh = 0.8 ;        weight_exc_inh =  0.6
 
 input_weight_poiss = 1.0     
                
