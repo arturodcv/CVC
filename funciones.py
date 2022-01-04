@@ -184,7 +184,6 @@ def create_lat_exc(kernel_type,kappa,orientation_i,orientation_j, weight_type, d
             }     
              
 
-#def main_self_connections(l_exc,l_inh,sd_exc,sd_inh,l_poiss_exc,l_poiss_inh, self_orientation):
 def lgn_to_v1_connections(l_exc,l_inh,sd_exc,sd_inh,l_poiss, self_orientation):
     tp.ConnectLayers(l_poiss, l_exc, dict_poiss_to_v1)
     tp.ConnectLayers(l_poiss, l_inh, dict_poiss_to_v1)
