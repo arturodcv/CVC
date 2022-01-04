@@ -168,7 +168,7 @@ broadband_end_2 = 100
 image_from = int(ms_steady_state_simulation) + 100
 eeg_freqs_from = int(ms_steady_state_simulation) + 200
 eeg_freqs_until = eeg_freqs_from + 500
-radius = columns_in_hipercolumns / 2 * 1000
+radius = 2.5
 collect_data_bool = 0
 
 
