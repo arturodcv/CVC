@@ -324,14 +324,14 @@ def get_eeg(times, complementary_time_list, orientation_to_read, exc_or_inh, pat
     return eeg
     
 def get_frequencies(eeg,orientation_to_read,exc_or_inh, path):
-    f, t, Sxx = scipy.signal.spectrogram(np.asarray(eeg), fs = len(eeg)/2)
-    plt.pcolormesh(t, f, Sxx, shading='gouraud'); plt.ylabel('Frequency [Hz]')
-    plt.xlabel('Time [sec]'); plt.grid(); 
-    plt.savefig(path + '/spectogram_' + str(orientation_to_read) + '_' + str(exc_or_inh)+'_.png')
-    plt.close('all')
+    #f, t, Sxx = scipy.signal.spectrogram(np.asarray(eeg), fs = len(eeg)/2)
+    #plt.pcolormesh(t, f, Sxx, shading='gouraud'); plt.ylabel('Frequency [Hz]')
+    #plt.xlabel('Time [sec]'); plt.grid(); 
+    #plt.savefig(path + '/spectogram_' + str(orientation_to_read) + '_' + str(exc_or_inh)+'_.png')
+    #plt.close('all')
     
-    freqs, density = scipy.signal.periodogram(eeg[eeg_freqs_from:eeg_freqs_until], scaling = 'density');
-    peaks, values = find_peaks(density, height= 10, distance = 10); 
+    freqs, density = scipy.signal.periodogram(eeg[eeg_freqs_from:eeg_freqs_until],fs = 1000, scaling = 'density');
+    peaks, values = find_peaks(density, height= 0.4, distance = 10); 
     idx = (- values['peak_heights']).argsort()[:num_max_frequencies]
     
     for node,peak_value in zip(peaks[idx].tolist(), values['peak_heights'][idx].tolist()):
