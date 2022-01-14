@@ -9,7 +9,7 @@ gabor_folder = 'gabor_outputs'
 
 
 #Simulation 
-image_selected = '/small.png'
+image_selected = '/big.png'
 images_to_simulate = [input_images_path + image_selected ] 
 
  
