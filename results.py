@@ -55,11 +55,11 @@ data = read_and_fix_dataframe('','exc')
 times,complementary_time_list = get_times(data)
 exc_eeg = get_eeg(times, complementary_time_list, 'exc', '_', path)
 print('excitatory spikes: ',np.sum(exc_eeg[200:]))
-freqs, peaks, values, idx = get_frequencies(exc_eeg,'exc','_', path)
+freqs, peaks = get_frequencies(exc_eeg,'exc','_', path)
 
 
 
-collect_data(image_selected, exc_eeg, inh_eeg, peaks, values, idx, seed)
+collect_data(image_selected, exc_eeg, inh_eeg, peaks,density, seed)
 
 #################### results for orientations
 
