@@ -33,7 +33,7 @@ path = results_path + '/data_total'; create_folder(path) ; remove_contents(path)
 data = read_and_fix_dataframe('','total')
 times,complementary_time_list = get_times(data)
 total_eeg = get_eeg(times, complementary_time_list, 'total', '_', path)
-freqs, peaks, values, idx = get_frequencies(total_eeg,'total','_', path)
+freqs, peaks = get_frequencies(total_eeg,'total','_', path)
 total_eeg = np.sum(total_eeg)
 
 print("\n\nResults for inhibitory data: ")
@@ -43,7 +43,7 @@ data = read_and_fix_dataframe('','inh')
 times,complementary_time_list = get_times(data)
 inh_eeg = get_eeg(times, complementary_time_list, 'inh', '_', path)
 print('inhibitory spikes: ',np.sum(inh_eeg[200:]))
-freqs, peaks,values, idx = get_frequencies(inh_eeg,'inh','_', path)
+freqs, peaks = get_frequencies(inh_eeg,'inh','_', path)
 
 
 
@@ -59,7 +59,7 @@ freqs, peaks = get_frequencies(exc_eeg,'exc','_', path)
 
 
 
-collect_data(image_selected, exc_eeg, inh_eeg, peaks,density, seed)
+collect_data(image_selected, exc_eeg, inh_eeg, peaks,freqs, seed)
 
 #################### results for orientations
 
