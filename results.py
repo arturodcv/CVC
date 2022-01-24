@@ -28,7 +28,7 @@ path = results_path + '/data_total'; create_folder(path) ; remove_contents(path)
 data = read_and_fix_dataframe('','total')
 times,complementary_time_list = get_times(data)
 eeg = get_eeg(times, complementary_time_list, 'total', '_', path)
-freqs, peaks = get_frequencies(eeg,'total','_', path)
+freqs, peaks, values = get_frequencies(eeg,'total','_', path)
 total_activity = np.sum(eeg)
 
 print("\n\nResults for inhibitory data: ")
@@ -37,7 +37,7 @@ path = results_path + '/data_inh'; create_folder(path) ; remove_contents(path)
 data = read_and_fix_dataframe('','inh')
 times,complementary_time_list = get_times(data)
 eeg = get_eeg(times, complementary_time_list, 'inh', '_', path)
-freqs, peaks = get_frequencies(eeg,'inh','_', path)
+freqs, peaks,values = get_frequencies(eeg,'inh','_', path)
 inh_activity = np.sum(eeg)
 
 
