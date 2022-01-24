@@ -49,7 +49,7 @@ nest.SetKernelStatus({'rng_seeds' : range(msd+N_vp+1, msd+2*N_vp+1)})
 
 with open('seed.txt', 'w') as f:
     f.write(str(msd))
-    f.write(str(pyrngs))
+    #f.write(str(pyrngs))
     
 ########################################################### Image processing ####################################################################
 time.sleep(2.0)
