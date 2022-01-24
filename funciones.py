@@ -344,12 +344,13 @@ def get_frequencies(eeg,orientation_to_read,exc_or_inh, path):
     plt.close('all')
     return density, peaks
     
-def collect_data(eeg, data_type, kurt, total_activity, exc_activity, inh_activity):
+def collect_data(eeg, data_type, total_activity, exc_activity, inh_activity):
     dictionary = {'image_name': image_selected, 'data_type': data_type, 'num_of_spikes': np.sum(eeg), 
+                  'num_spikes_from': np.sum(eeg[200:]), 'node': peaks[0], 'gamma_power': values[0],
                   'selected_hypercolumns': radius,'total_activity': total_activity,
                   'exc_activity': exc_activity, 'inh_activity': inh_activity,
                   'ms_stimulus': ms_per_stimuli, 'neurons_per_column_inh': neurons_per_column_inh,
-                  'poisson_bias': poisson_bias, 'mean_lat_conn_inh': mean_lat_conn_inh, 
+                  'mean_lat_conn_inh': mean_lat_conn_inh, 
                   'stddev_lat_conn_inh': stddev_lat_conn_inh,'mean_lat_conn_exc': mean_lat_conn_exc, 
                   'stddev_lat_conn_exc': stddev_lat_conn_exc, 'delay_exc': delay_exc,
                   'delay_exc_large': delay_exc_large, 'delay_inh': delay_inh, 
@@ -361,11 +362,10 @@ def collect_data(eeg, data_type, kurt, total_activity, exc_activity, inh_activit
                   'weight_inh_exc': weight_inh_exc,'p_center_inh_inh': p_center_inh_inh,
                   'weight_inh_inh': weight_inh_inh,'p_center_exc_exc': p_center_exc_exc,
                   'weight_exc_exc': weight_exc_exc,
-                  'p_center_exc_inh': p_center_exc_inh,'weight_exc_inh': weight_exc_inh, 
-                  'kurtosis': kurt, 'eeg': eeg
+                  'p_center_exc_inh': p_center_exc_inh,'weight_exc_inh': weight_exc_inh
                   }
     now = datetime.now()
-    save_dict(dictionary,'results_gain_inh/results_' + str(now))
+    save_dict(dictionary,'results_collect_data/results_' + str(data_type) +'_'+ str(now))
                   
 def get_kurtosis(data,data_type):
     data_ = data[["x_pos","y_pos"]]
