@@ -47,8 +47,11 @@ path = results_path + '/data_exc'; create_folder(path) ; remove_contents(path)
 data = read_and_fix_dataframe('','exc')
 times,complementary_time_list = get_times(data)
 eeg = get_eeg(times, complementary_time_list, 'exc', '_', path)
-freqs, peaks = get_frequencies(eeg,'exc','_', path)
+freqs, peaks, values = get_frequencies(eeg,'exc','_', path)
 exc_activity = np.sum(eeg)
+
+
+collect_data(eeg, image_selected, exc_activity, inh_activity, peaks, values)
 
 #################### results for orientations
 
