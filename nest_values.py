@@ -9,13 +9,11 @@ gabor_folder = 'gabor_outputs'
 
 
 #Simulation 
-image_selected = '/sinusoid_12.png'
-images_to_simulate = [input_images_path + image_selected ] 
-
- 
-num_images_to_simulate = len(images_to_simulate)
+#image_selected = '/sinusoid_12.png'
+#images_to_simulate = [input_images_path + image_selected ] 
+#num_images_to_simulate = len(images_to_simulate)
 ms_per_stimuli = 700.0
-simulation_time = ms_per_stimuli * num_images_to_simulate 
+simulation_time = ms_per_stimuli * 1 #num_images_to_simulate 
 ms_steady_state_simulation = 0.0
 
 lateral_connections = True
