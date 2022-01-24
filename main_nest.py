@@ -40,7 +40,7 @@ nest.SetKernelStatus({"resolution": resolution})
 nest.CopyModel("izhikevich","exc", RS_dict)
 nest.CopyModel("izhikevich","inh", FS_dict) 
 
-now=datetime.datetime.now()
+now=datetime.now()
 msd = int(('%02d%02d%d'%(now.day,now.hour,now.minute)))
 
 N_vp = nest.GetKernelStatus(['total_num_virtual_procs'])[0]
