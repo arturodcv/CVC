@@ -17,6 +17,7 @@ from glob import glob
 import shutil
 from tqdm import tqdm
 import pickle
+import datetime
 
 
 from nest_values import *
@@ -32,6 +33,15 @@ nest.SetKernelStatus({"resolution": resolution})
 
 nest.CopyModel("izhikevich","exc", RS_dict)
 nest.CopyModel("izhikevich","inh", FS_dict) 
+
+
+msd = datetime.now().microsecond # master seed
+n_vp = nest.GetKernelStatus('total_num_virtual_procs')
+msdrange1 = range(msd, msd + n_vp)
+pyrngs = [numpy.random.RandomState(s) for s in msdrange1]
+msdrange2 = range(msd + n_vp + 1, msd + 1 + 2*n_vp)
+nest.SetKernelStatus({'grng_seed': msd + n_vp,
+                      'rng_seeds': msdrange2})
 
 
 ########################################################### Image processing ####################################################################
