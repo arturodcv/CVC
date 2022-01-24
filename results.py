@@ -59,7 +59,7 @@ freqs, peaks = get_frequencies(exc_eeg,'exc','_', path)
 
 
 
-collect_data(image_selected, exc_eeg, inh_eeg, peaks,density, seed)
+collect_data(image_selected, exc_eeg, inh_eeg, peaks,freqs, seed)
 
 #################### results for orientations
 
