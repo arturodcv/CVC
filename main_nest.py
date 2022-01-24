@@ -41,7 +41,7 @@ nest.CopyModel("izhikevich","exc", RS_dict)
 nest.CopyModel("izhikevich","inh", FS_dict) 
 
 
-msd = 123456
+msd = 101010
 N_vp = nest.GetKernelStatus(['total_num_virtual_procs'])[0]
 pyrngs = [np.random.RandomState(s) for s in range(msd, msd+N_vp)]
 nest.SetKernelStatus({'grng_seed' : msd+N_vp})
