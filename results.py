@@ -50,7 +50,7 @@ eeg = get_eeg(times, complementary_time_list, 'exc', '_', path)
 freqs, peaks, values, idx = get_frequencies(eeg,'exc','_', path)
 exc_activity = np.sum(eeg)
 
-collect_data(eeg, image_selected, exc_activity, inh_activity, peaks, values)
+collect_data(eeg, image_selected, exc_activity, inh_activity, peaks, values, idx)
 
 #################### results for orientations
 
