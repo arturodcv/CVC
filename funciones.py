@@ -365,6 +365,7 @@ def collect_data(eeg, image_selected, exc_activity, inh_activity, peaks, values,
                   'p_center_exc_inh': p_center_exc_inh,'weight_exc_inh': weight_exc_inh
                   }
     now = datetime.now()
+    create_folder('results_collect_data')
     save_dict(dictionary,'results_collect_data/results_' + str(image_selected) +'_'+ str(now))
                   
 def get_kurtosis(data,data_type):
