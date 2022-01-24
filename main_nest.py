@@ -47,9 +47,15 @@ pyrngs = [np.random.RandomState(s) for s in range(msd, msd+N_vp)]
 nest.SetKernelStatus({'grng_seed' : msd+N_vp})
 nest.SetKernelStatus({'rng_seeds' : range(msd+N_vp+1, msd+2*N_vp+1)})
 
+
+if os.path.exists("seed.txt"):
+  os.remove("seed.txt")
+else:
+  continue
+
 with open('seed.txt', 'w') as f:
     f.write(str(msd))
-    #f.write(str(pyrngs))
+
     
 ########################################################### Image processing ####################################################################
 time.sleep(2.0)
