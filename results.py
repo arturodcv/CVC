@@ -22,6 +22,9 @@ from funciones   import *
 
 image_selected = sys.argv[1] 
 
+with open('seed.txt') as f:
+    seed = lines = int(f.readlines()[0])
+
 ########################### results for exc/inh/total 
 
 print("Results for total data: ")
@@ -56,7 +59,7 @@ freqs, peaks, values, idx = get_frequencies(eeg,'exc','_', path)
 exc_activity = np.sum(eeg)
 
 
-collect_data(eeg, image_selected, exc_activity, inh_activity, peaks, values, idx)
+collect_data(eeg, image_selected, exc_activity, inh_activity, peaks, values, idx, seed)
 
 #################### results for orientations
 
