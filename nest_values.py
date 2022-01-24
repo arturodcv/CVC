@@ -9,7 +9,7 @@ gabor_folder = 'gabor_outputs'
 
 
 #Simulation 
-image_selected = '/big.png'
+image_selected = '/sinusoid_12.png'
 images_to_simulate = [input_images_path + image_selected ] 
 
  
@@ -92,7 +92,7 @@ slowness_exc = 1.0; slowness_exc_large = 1.0; slowness_inh = 0.05
 
 
 # Large lateral connections
-kappa_j = 0.126 * 1.0
+kappa_j = 0.126 * 1.5
 kappa_w = 0.14 * 2.5
 weight_large_range_exc_exc = 0.01
 weight_large_range_exc_inh = 0.03
@@ -106,7 +106,7 @@ p_center_exc_exc = 1.0 ;        weight_exc_exc =  0.4
 p_center_exc_inh = 1.0 ;        weight_exc_inh =  0.4
 
 input_weight_poiss_exc = 1.0     
-input_weight_poiss_inh = 0.5
+input_weight_poiss_inh = 0.25
                
 dict_poiss_to_v1_exc  = {'connection_type': 'divergent','weights': input_weight_poiss_exc ,
                          'mask': {'grid': {'rows': 1, 'columns': 1}}, 
@@ -167,9 +167,9 @@ window_time = 0
 re_size = (x_cortex_size,y_cortex_size)
 frames_per_second = 20
 num_max_frequencies = 2
-broadband_initial = 25
-broadband_end_1 = 60
-broadband_end_2 = 100
+broadband_initial = 12
+broadband_end_1 = 50
+broadband_end_2 = 60
 image_from = int(ms_steady_state_simulation) + 100
 eeg_freqs_from = int(ms_steady_state_simulation) + 200
 eeg_freqs_until = eeg_freqs_from + 500
