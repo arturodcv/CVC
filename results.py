@@ -15,10 +15,12 @@ from collections import OrderedDict
 from scipy.fft import rfft
 import pickle
 import scipy.signal
+import sys
 
 from nest_values import *
 from funciones   import *
 
+image_selected = sys.argv[1] 
 
 ########################### results for exc/inh/total 
 
