@@ -39,7 +39,7 @@ times,complementary_time_list = get_times(data)
 eeg = get_eeg(times, complementary_time_list, 'inh', '_', path)
 freqs, peaks,values, idx = get_frequencies(eeg,'inh','_', path)
 inh_activity = np.sum(eeg)
-print(np.sum(eeg[200:]))
+print('inhibitory spikes: ',np.sum(eeg[200:]))
 
 print("\n\nResults for excitatory data: ")
 
@@ -50,7 +50,7 @@ times,complementary_time_list = get_times(data)
 eeg = get_eeg(times, complementary_time_list, 'exc', '_', path)
 freqs, peaks, values, idx = get_frequencies(eeg,'exc','_', path)
 exc_activity = np.sum(eeg)
-print(np.sum(eeg[200:]))
+print('excitatory spikes: ',np.sum(eeg[200:]))
 
 collect_data(eeg, image_selected, exc_activity, inh_activity, peaks, values, idx)
 
