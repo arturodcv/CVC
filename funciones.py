@@ -342,9 +342,9 @@ def get_frequencies(eeg,orientation_to_read,exc_or_inh, path):
     plt.plot(freqs,density); plt.xlabel("Frequency (Hz)"); plt.ylabel("Frequency Domain (Spectrum) Magnitude")
     plt.grid(); plt.savefig(path + '/periodogram_' + str(orientation_to_read) + '_' + str(exc_or_inh)+'_.png')
     plt.close('all')
-    return density, peaks
+    return density, peaks, idx
     
-def collect_data(image_selected, exc_eeg, inh_eeg, peaks, freqs, seed):
+def collect_data(image_selected, exc_eeg, inh_eeg, peaks, freqs, idx, seed):
     dictionary = {'image_name': image_selected, 'exc_activity': np.sum(exc_eeg), 'inh_activity': np.sum(inh_eeg), 
                   'exc_spikes_from': np.sum(exc_eeg[200:]), 'inh_spikes_from': np.sum(inh_eeg[200:]),
                   'node': peaks[idx][0], 'gamma_power': np.around(sum(freqs[broadband_initial:broadband_end_1]),2) ,
