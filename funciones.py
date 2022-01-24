@@ -347,7 +347,7 @@ def get_frequencies(eeg,orientation_to_read,exc_or_inh, path):
 def collect_data(image_selected, exc_eeg, inh_eeg, peaks, values, idx, seed):
     dictionary = {'image_name': image_selected, 'exc_activity': np.sum(exc_eeg), 'inh_activity': np.sum(inh_eeg), 
                   'exc_spikes_from': np.sum(exc_eeg[200:]), 'inh_spikes_from': np.sum(inh_eeg[200:]),
-                  'node': peaks[idx][0], 'gamma_power': values['peak_heights'][idx][0],
+                  'node': peaks[idx][0], 'gamma_power': np.around(sum(density[broadband_initial:broadband_end_1]),2) ,
                   'seed': seed,
                   'selected_hypercolumns': radius,
                   'ms_stimulus': ms_per_stimuli, 'neurons_per_column_inh': neurons_per_column_inh,
