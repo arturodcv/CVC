@@ -51,7 +51,7 @@ nest.SetKernelStatus({'rng_seeds' : range(msd+N_vp+1, msd+2*N_vp+1)})
 if os.path.exists("seed.txt"):
   os.remove("seed.txt")
 else:
-  continue
+  pass
 
 with open('seed.txt', 'w') as f:
     f.write(str(msd))
