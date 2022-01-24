@@ -38,8 +38,8 @@ nest.CopyModel("izhikevich","inh", FS_dict)
 msd = 123456
 N_vp = nest.GetKernelStatus(['total_num_virtual_procs'])[0]
 pyrngs = [np.random.RandomState(s) for s in range(msd, msd+N_vp)]
-nest.SetKernelStatus({’grng_seed’ : msd+N_vp})
-nest.SetKernelStatus({’rng_seeds’ : range(msd+N_vp+1, msd+2*N_vp+1)})
+nest.SetKernelStatus({'grng_seed' : msd+N_vp})
+nest.SetKernelStatus({'rng_seeds' : range(msd+N_vp+1, msd+2*N_vp+1)})
 
 
 ########################################################### Image processing ####################################################################
