@@ -29,7 +29,7 @@ cortex_size = x_cortex_size * y_cortex_size
 K_size = 900; Lambda = 100 / 2 ;Psi = 0 ;Sigma = Lambda * 0.36; Gamma = 0.7 
 cut_pixels = 0
 get_output_gabors = 0
-max_rescaling_factor_gabor = 80
+max_rescaling_factor_gabor = 70
 correct_gamma = 0
 
 #Nest
