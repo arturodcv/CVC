@@ -366,8 +366,8 @@ def collect_data(image_selected, exc_eeg, inh_eeg, peaks, freqs, idx, seed):
                   'p_center_exc_inh': p_center_exc_inh,'weight_exc_inh': weight_exc_inh
                   }
     now = datetime.now()
-    create_folder('results_collect_data_1')
-    save_dict(dictionary,'results_collect_data_1/results_' + str(image_selected[1:-4]) +'_'+ str(now)[:-7])
+    create_folder('results_collect_data_2')
+    save_dict(dictionary,'results_collect_data_2/results_' + str(image_selected[1:-4]) +'_'+ str(now)[:-7])
                   
 def get_kurtosis(data,data_type):
     data_ = data[["x_pos","y_pos"]]
