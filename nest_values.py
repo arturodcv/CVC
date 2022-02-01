@@ -6,7 +6,7 @@ results_path = 'results_folder'
 positions_path = 'positions_folder'
 input_images_path = 'input_images_folder' 
 gabor_folder = 'gabor_outputs'
-collect_data_folder = 'results_collect_data_13'
+collect_data_folder = 'results_collect_data_14'
 
 
 #Simulation 
@@ -30,7 +30,7 @@ cortex_size = x_cortex_size * y_cortex_size
 K_size = 900; Lambda = 100 / 2 ;Psi = 0 ;Sigma = Lambda * 0.36; Gamma = 0.7 
 cut_pixels = 0
 get_output_gabors = 0
-max_rescaling_factor_gabor = 70
+max_rescaling_factor_gabor = 35
 correct_gamma = 0
 
 #Nest
@@ -92,9 +92,9 @@ slowness_exc = 1.0; slowness_exc_large = 1.0; slowness_inh = 0.05
 
 # Large lateral connections
 kappa_j = 0.126 * 1.5
-kappa_w = 0.14 * 3
+kappa_w = 0.14 * 2.5
 weight_large_range_exc_exc = 0.01
-weight_large_range_exc_inh = 0.04
+weight_large_range_exc_inh = 0.03
 rescale = 2.0 ; radius_lat = 2.5
 
 # Short lateral connections
