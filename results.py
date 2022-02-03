@@ -63,7 +63,11 @@ collect_data(image_selected, exc_eeg, inh_eeg, peaks,freqs,idx, seed)
 
 #################### results for orientations
 
-quit()
+if make_image_video == True:
+    pass
+else:
+    quit()
+    
 orientations = [i*180/num_orientations for i in range(0,num_orientations)]
 neuron_types = ['l_exc', 'l_inh']
 
