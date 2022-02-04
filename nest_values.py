@@ -6,7 +6,7 @@ results_path = 'results_folder'
 positions_path = 'positions_folder'
 input_images_path = 'input_images_folder' 
 gabor_folder = 'gabor_outputs'
-collect_data_folder = 'results_collect_data_freq_75'
+collect_data_folder = 'results_collect_data_big_edge'
 
 
 #Simulation 
@@ -30,7 +30,7 @@ cortex_size = x_cortex_size * y_cortex_size
 K_size = 900; Lambda = 75 ;Psi = 0 ;Sigma = Lambda * 0.36; Gamma = 0.7 
 cut_pixels = 0
 get_output_gabors = 0
-max_rescaling_factor_gabor = 80
+max_rescaling_factor_gabor = 35
 correct_gamma = 0
 
 #Nest
