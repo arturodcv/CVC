@@ -20,7 +20,7 @@ import sys
 
 from nest_values import *
 
-Lambda = int(sys.argv[3])
+#Lambda = int(sys.argv[3]); Sigma = Lambda * 0.36
 #################################################### Folders ################################################################
 
 def create_folder(path_name):
