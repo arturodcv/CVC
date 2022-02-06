@@ -20,7 +20,7 @@ import pickle
 import datetime
 import sys
 
-K_size = 900; Lambda = int(sys.argv[3]) ;Psi = 0 ;Sigma = Lambda * 0.36; Gamma = 0.7 
+Lambda = int(sys.argv[3]) 
 max_rescaling_factor_gabor =  int(sys.argv[4])
 
 
