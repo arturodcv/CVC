@@ -29,6 +29,9 @@ num_images_to_simulate = len(images_to_simulate)
 #ms_per_stimuli = 700.0
 #simulation_time = ms_per_stimuli * num_images_to_simulate 
 
+K_size = 900; Lambda = int(sys.argv[3]) ;Psi = 0 ;Sigma = Lambda * 0.36; Gamma = 0.7 
+max_rescaling_factor_gabor =  int(sys.argv[4])
+
 ########################################################### Nest ###################################################################
 
 nest.ResetKernel()
