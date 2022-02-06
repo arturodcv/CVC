@@ -19,7 +19,7 @@ from datetime import datetime
 
 from nest_values import *
 
-
+Lambda = int(sys.argv[3])
 #################################################### Folders ################################################################
 
 def create_folder(path_name):
