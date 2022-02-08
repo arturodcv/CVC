@@ -6,7 +6,7 @@ results_path = 'results_folder'
 positions_path = 'positions_folder'
 input_images_path = 'input_images_folder' 
 gabor_folder = 'gabor_outputs'
-collect_data_folder = 'results_collect_data_freqs_26'
+collect_data_folder = 'results_collect_data_test'
 
 
 #Simulation 
@@ -27,10 +27,10 @@ y_cortex_size = num_hipercolumns * columns_in_hipercolumns
 cortex_size = x_cortex_size * y_cortex_size
 
 #Gabor
-K_size = 900 ;Psi = 0 ; Gamma = 0.7 ; Lambda = 50 ; Sigma = Lambda * 0.36
+K_size = 900 ;Psi = 0 ; Gamma = 0.7 ; Lambda = 25 ; Sigma = Lambda * 0.36
 cut_pixels = 0
 get_output_gabors = 0
-max_rescaling_factor_gabor = 35
+max_rescaling_factor_gabor = 80
 correct_gamma = 0
 
 #Nest
