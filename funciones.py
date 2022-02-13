@@ -72,7 +72,7 @@ def input_treatment(input_spike,x_cortex_size,y_cortex_size,orientation):
     flat_list = [item for sublist in input_as_list for item in sublist]
     return flat_list
     
-def main_img(img,orientation, max_to_rescale):
+def main_img(img,orientation, max_to_rescale, freq):
     img = cv2.imread(img)
     if correct_gamma == True: 
         img_in_0_1 = np.multiply(img,1/255)
@@ -81,7 +81,7 @@ def main_img(img,orientation, max_to_rescale):
         format_img = np.uint8(img_in_0_255)
         img = format_img
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
-    output_gabor = gabor(gray_img,orientation)
+    output_gabor = gabor(gray_img,orientation, freq)
     
     output_gabor = np.multiply(output_gabor,1/(max_to_rescale/max_rescaling_factor_gabor))
     
