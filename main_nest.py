@@ -27,9 +27,6 @@ image_selected = sys.argv[1]
 images_to_simulate = [input_images_path + image_selected ]  
 num_images_to_simulate = len(images_to_simulate)
 
-print(x_cortex_size)
-quit()
-
 ########################################################### Nest ###################################################################
 
 nest.ResetKernel()
