@@ -6,7 +6,7 @@ results_path = 'results_folder'
 positions_path = 'positions_folder'
 input_images_path = 'input_images_folder' 
 gabor_folder = 'gabor_outputs'
-collect_data_folder = 'results_collect_data_36'
+collect_data_folder = 'results_collect_data_test'
 
 
 #Simulation 
@@ -29,7 +29,7 @@ cortex_size = x_cortex_size * y_cortex_size
 #Gabor
 K_size = 900 ;Psi = 0 ; Gamma = 0.7 ; sigma_to_lambda = 0.36 #Lambda = 50 ; Sigma = Lambda * 0.36
 cut_pixels = 0
-get_output_gabors = 0
+get_output_gabors = 1
 max_rescaling_factor_gabor = 70
 correct_gamma = 0
 
