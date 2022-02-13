@@ -95,7 +95,6 @@ def main_img(img,orientation, max_to_rescale):
 def full_img_filtering(images_to_simulate,num_orientations):
     gabors_dict = {}
 
-
     for i in range(0,len(images_to_simulate)):
         image_dict = {}
         for j in range(0,num_orientations): 
@@ -118,7 +117,7 @@ def get_numbers_from_distribution(fd,num_samples):
         muestras.append(index_in_fd)
     return samples
 
-def get_image_with_frequencies(image_name,orientation,max_gabor, num_freqs):
+def get_image_with_frequencies(image_name,orientation, num_freqs):
     prob_function = [csf(i) for i in range(0,num_freqs)]    
     normalized_pf = [prob_function[i]/np.sum(prob_function) for i in range(len(prob_function))] 
     density_function = [np.sum(normalized_pf[:i]) for i in range(len(normalized_pf))] 
