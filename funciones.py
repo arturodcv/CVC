@@ -108,20 +108,20 @@ def full_img_filtering(images_to_simulate,num_orientations):
 def csf(x):  # constrast sensitivity function
     return 2.6*(0.0192 + 0.114*x)*np.exp(-(0.114*x)**1.1)
 
-def get_numbers_from_distribution(fd,num_samples):
+def get_samples_from_distribution(fd,num_samples):
     samples = []
     for i in range(num_samples):
         rnd = np.random.random()
         value_in_fd = min(fd, key=lambda x:abs(x-rnd))
         index_in_fd = fd.index(value_in_fd)
-        muestras.append(index_in_fd)
+        samples.append(index_in_fd)
     return samples
 
 def get_image_with_frequencies(image_name,orientation, num_freqs):
     prob_function = [csf(i) for i in range(0,num_freqs)]    
     normalized_pf = [prob_function[i]/np.sum(prob_function) for i in range(len(prob_function))] 
     density_function = [np.sum(normalized_pf[:i]) for i in range(len(normalized_pf))] 
-    samples = get_numbers_from_distribution(density_function,cortex_size)
+    samples = get_samples_from_distribution(density_function,cortex_size)
     images = []
     for i in range(1,num_freqs+1):
         freq = 100/i
