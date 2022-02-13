@@ -27,7 +27,7 @@ y_cortex_size = num_hipercolumns * columns_in_hipercolumns
 cortex_size = x_cortex_size * y_cortex_size
 
 #Gabor
-K_size = 900 ;Psi = 0 ; Gamma = 0.7 ; Lambda = 50 ; Sigma = Lambda * 0.36
+K_size = 900 ;Psi = 0 ; Gamma = 0.7 ; sigma_to_lambda = 0.36 #Lambda = 50 ; Sigma = Lambda * 0.36
 cut_pixels = 0
 get_output_gabors = 0
 max_rescaling_factor_gabor = 70
