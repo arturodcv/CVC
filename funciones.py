@@ -135,9 +135,10 @@ def get_image_with_frequencies(image_name,orientation_in_radians, num_freqs):
     for i in range(x_cortex_size):
         for j in range(y_cortex_size):
             #mixed_image[i][j] = images[int(samples[i*x_cortex_size + j])][i][j]
-            mixed_image[i][j] = 1
-            print(samples[i*x_cortex_size + j], [i*x_cortex_size + j],i,j)
-            print(len(images), len(images[0]))
+            print("i,j = ",i,j)
+            print("i*x_cortex_size + j = ",i*x_cortex_size + j)
+            print("samples[i*x_cortex_size + j] = ", samples[i*x_cortex_size + j])
+            print("images[samples[i*x_cortex_size + j]][i][j] = ", images[samples[i*x_cortex_size + j]][i][j])
             mixed_image[i][j] = images[samples[i*x_cortex_size + j]][i][j]
     return mixed_image
 
