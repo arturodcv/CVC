@@ -30,7 +30,7 @@ cortex_size = x_cortex_size * y_cortex_size
 K_size = 900 ;Psi = 0 ; Gamma = 0.7 ; sigma_to_lambda = 0.36 #Lambda = 50 ; Sigma = Lambda * 0.36
 num_freqs = 40
 cut_pixels = 0
-get_output_gabors = 1
+get_output_gabors = 0
 max_rescaling_factor_gabor = 70
 correct_gamma = 0
 
