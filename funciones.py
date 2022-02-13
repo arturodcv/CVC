@@ -100,9 +100,9 @@ def full_img_filtering(images_to_simulate,num_orientations):
         image_dict = {}
         for j in range(0,num_orientations): 
             orientation = j*180/num_orientations # orientation in radians
-            max_gabor = (gabor_filter(K_size = K_size, Lambda = Lambda, Theta = orientation * math.pi/ 180, Sigma = Sigma, Gamma = 0.00001, Psi = Psi) + 1) * 255 / 2
-            max_gabor = np.max(gabor(max_gabor,orientation))
-            image_dict["orientation_"+str(orientation)] = get_image_with_frequencies(images_to_simulate[i],orientation,max_gabor, num_freqs)
+            #max_gabor = (gabor_filter(K_size = K_size, Lambda = Lambda, Theta = orientation * math.pi/ 180, Sigma = Sigma, Gamma = 0.00001, Psi = Psi) + 1) * 255 / 2
+            #max_gabor = np.max(gabor(max_gabor,orientation))
+            image_dict["orientation_"+str(orientation)] = get_image_with_frequencies(images_to_simulate[i],orientation, num_freqs)
         gabors_dict["image_"+str(i)] = image_dict
     return gabors_dict
 
