@@ -68,9 +68,10 @@ def input_treatment(input_spike,x_cortex_size,y_cortex_size,orientation):
     input_as_img = Image.fromarray(input_spike)
     input_resized = np.asarray(input_as_img.resize((x_cortex_size,y_cortex_size), resample = Image.NEAREST  ))
     input_transposed = input_resized.transpose()
-    input_as_list = input_transposed.tolist()
-    flat_list = [item for sublist in input_as_list for item in sublist]
-    return flat_list
+    #input_as_list = input_transposed.tolist()
+    #flat_list = [item for sublist in input_as_list for item in sublist]
+    #return flat_list
+    return input_transposed
     
 def main_img(img,orientation, max_to_rescale, freq):
     img = cv2.imread(img)
@@ -87,10 +88,11 @@ def main_img(img,orientation, max_to_rescale, freq):
     
     if cut_pixels != 0:
         output_gabor = output_gabor[cut_pixels:-cut_pixels,cut_pixels:-cut_pixels]
-        
-    flat_list = input_treatment(output_gabor,x_cortex_size,y_cortex_size,orientation)
+    
+    treated_image = input_treatment(output_gabor,x_cortex_size,y_cortex_size,orientation)
+    #flat_list = input_treatment(output_gabor,x_cortex_size,y_cortex_size,orientation)
 
-    return flat_list
+    return treated_image
     
 def full_img_filtering(images_to_simulate,num_orientations):
     gabors_dict = {}
@@ -134,13 +136,10 @@ def get_image_with_frequencies(image_name,orientation_in_radians, num_freqs):
     mixed_image = np.zeros([x_cortex_size,y_cortex_size])
     for i in range(x_cortex_size):
         for j in range(y_cortex_size):
-            #mixed_image[i][j] = images[int(samples[i*x_cortex_size + j])][i][j]
-            print("i,j = ",i,j)
-            print("i*x_cortex_size + j = ",i*x_cortex_size + j)
-            print("samples[i*x_cortex_size + j] = ", samples[i*x_cortex_size + j])
-            print("images[samples[i*x_cortex_size + j]][i][j] = ", images[samples[i*x_cortex_size + j]][i][j])
             mixed_image[i][j] = images[samples[i*x_cortex_size + j]][i][j]
-    return mixed_image
+    input_as_list = mixed_image.tolist()
+    flat_list = [item for sublist in input_as_list for item in sublist]
+    return flat_list
 
 def save_gabors(gabors_to_nest, images_to_simulate,num_orientations):
     for i in range(0,len(images_to_simulate)):
