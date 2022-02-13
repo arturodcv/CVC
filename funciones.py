@@ -134,7 +134,7 @@ def get_image_with_frequencies(image_name,orientation_in_radians, num_freqs):
     mixed_image = np.zeros([x_cortex_size,y_cortex_size])
     for i in range(x_cortex_size):
         for j in range(y_cortex_size):
-            mixed_image[i][j] = images[int(samples[i*x_cortex_size + j]][i][j]
+            mixed_image[i][j] = images[int(samples[i*x_cortex_size + j][i][j]
     return mixed_image
 
 def save_gabors(gabors_to_nest, images_to_simulate,num_orientations):
