@@ -122,7 +122,6 @@ def get_image_with_frequencies(image_name,orientation_in_radians, num_freqs):
     normalized_pf = [prob_function[i]/np.sum(prob_function) for i in range(len(prob_function))] 
     density_function = [np.sum(normalized_pf[:i]) for i in range(len(normalized_pf))] 
     samples = get_samples_from_distribution(density_function,cortex_size)
-    print(samples[3],samples[4],samples[6],samples[5],samples[0],samples[1],samples[10],samples[30],samples[40],samples[50],samples[60])
     images = []
     for i in range(1,num_freqs+1):
         freq = 100/i
@@ -135,7 +134,7 @@ def get_image_with_frequencies(image_name,orientation_in_radians, num_freqs):
     mixed_image = np.zeros([x_cortex_size,y_cortex_size])
     for i in range(x_cortex_size):
         for j in range(y_cortex_size):
-            mixed_image[i][j] = images[samples[int(i*x_cortex_size + j)]][i][j]
+            mixed_image[i][j] = images[int(samples[i*x_cortex_size + j]][i][j]
     return mixed_image
 
 def save_gabors(gabors_to_nest, images_to_simulate,num_orientations):
