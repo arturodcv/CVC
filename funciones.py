@@ -117,7 +117,7 @@ def get_samples_from_distribution(fd,num_samples):
         samples.append(index_in_fd)
     return samples
 
-def get_image_with_frequencies(image_name,orientation, num_freqs):
+def get_image_with_frequencies(image_name,orientation_in_radians, num_freqs):
     prob_function = [csf(i) for i in range(0,num_freqs)]    
     normalized_pf = [prob_function[i]/np.sum(prob_function) for i in range(len(prob_function))] 
     density_function = [np.sum(normalized_pf[:i]) for i in range(len(normalized_pf))] 
