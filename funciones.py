@@ -129,7 +129,7 @@ def get_image_with_frequencies(image_name,orientation_in_radians, max_freq):
     #samples = np.random.randint(1,max_freq+1,cortex_size)
     
     images = []
-    for i in tqdm(range(len(freqs))):
+    for i in range(len(freqs)):
         freq = 100/freqs[i]
         Lambda = freq; Sigma = Lambda * sigma_to_lambda
         max_gabor = (gabor_filter(K_size = K_size, Lambda = freq, Theta = orientation_in_radians * math.pi/180, Sigma = Sigma, Gamma = 0.00001, Psi = Psi) + 1) * 255 / 2
