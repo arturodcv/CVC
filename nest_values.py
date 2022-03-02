@@ -173,7 +173,7 @@ image_from = int(ms_steady_state_simulation) + 100
 eeg_freqs_from = int(ms_steady_state_simulation) + 200
 eeg_freqs_until = eeg_freqs_from + 500
 radius = 2.5
-make_image_video = True
+make_image_video = False
 collect_data_bool = 0
 
 
