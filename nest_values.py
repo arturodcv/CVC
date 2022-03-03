@@ -6,13 +6,10 @@ results_path = 'results_folder'
 positions_path = 'positions_folder'
 input_images_path = 'input_images_folder' 
 gabor_folder = 'gabor_outputs'
-collect_data_folder = 'results_collect_data_83'
+collect_data_folder = 'results_collect_data_84'
 
 
 #Simulation 
-#image_selected = '/sinusoid_12.png'
-#images_to_simulate = [input_images_path + image_selected ] 
-#num_images_to_simulate = len(images_to_simulate)
 ms_per_stimuli = 700.0
 simulation_time = ms_per_stimuli * 1 #num_images_to_simulate 
 ms_steady_state_simulation = 0.0
@@ -101,11 +98,11 @@ rescale = 1.0 ; radius_lat = 3.5#2.5
 ratio_inh_exc_w = 4.0
 p_center_inh_exc = 1.0 ;        weight_inh_exc = - ratio_inh_exc_w * 0.2
 p_center_inh_inh = 1.0 ;        weight_inh_inh = - ratio_inh_exc_w * 0.2
-p_center_exc_exc = 1.0 ;        weight_exc_exc =  0.5
-p_center_exc_inh = 1.0 ;        weight_exc_inh =  0.5
+p_center_exc_exc = 1.0 ;        weight_exc_exc =  0.3
+p_center_exc_inh = 1.0 ;        weight_exc_inh =  0.3
 
 input_weight_poiss_exc = 1.0     
-input_weight_poiss_inh = 0.25
+input_weight_poiss_inh = 0.4
                
 dict_poiss_to_v1_exc  = {'connection_type': 'divergent','weights': input_weight_poiss_exc ,
                          'mask': {'grid': {'rows': 1, 'columns': 1}}, 
