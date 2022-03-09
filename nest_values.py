@@ -1,3 +1,11 @@
+import sys
+
+
+p_center_exc_exc = sys.argv[3]
+p_center_exc_inh = sys.argv[4]
+input_weight_poiss_inh = sys.argv[5]
+
+
 #Paths
 sd_path = 'spk_detectors_folder' 
 df_folder = 'dataframes_folder'
@@ -6,7 +14,7 @@ results_path = 'results_folder'
 positions_path = 'positions_folder'
 input_images_path = 'input_images_folder' 
 gabor_folder = 'gabor_outputs'
-collect_data_folder = 'results_collect_data_92'
+collect_data_folder = 'massive_search/results_' + str(p_center_exc_exc) + '_' + str(p_center_exc_inh) + '_' + str(input_weight_poiss_inh)
 
 
 #Simulation 
@@ -98,11 +106,11 @@ rescale = 1.0 ; radius_lat = 3.5#2.5
 ratio_inh_exc_w = 4.0
 p_center_inh_exc = 1.0 ;        weight_inh_exc = - ratio_inh_exc_w * 0.25
 p_center_inh_inh = 1.0 ;        weight_inh_inh = - ratio_inh_exc_w * 0.05
-p_center_exc_exc = 1.0 ;        weight_exc_exc =  0.6
-p_center_exc_inh = 1.0 ;        weight_exc_inh =  1.0
+#p_center_exc_exc = 1.0 ;        weight_exc_exc =  0.6
+#p_center_exc_inh = 1.0 ;        weight_exc_inh =  1.0
 
 input_weight_poiss_exc = 1.0     
-input_weight_poiss_inh = 0.2
+#input_weight_poiss_inh = 0.2
                
 dict_poiss_to_v1_exc  = {'connection_type': 'divergent','weights': input_weight_poiss_exc ,
                          'mask': {'grid': {'rows': 1, 'columns': 1}}, 
