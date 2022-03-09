@@ -1,9 +1,9 @@
 import sys
 
 
-p_center_exc_exc = sys.argv[3]
-p_center_exc_inh = sys.argv[4]
-input_weight_poiss_inh = sys.argv[5]
+weight_exc_exc = float(sys.argv[3])
+weight_exc_inh = float(sys.argv[4])
+input_weight_poiss_inh = float(sys.argv[5])
 
 
 #Paths
@@ -106,8 +106,8 @@ rescale = 1.0 ; radius_lat = 3.5#2.5
 ratio_inh_exc_w = 4.0
 p_center_inh_exc = 1.0 ;        weight_inh_exc = - ratio_inh_exc_w * 0.25
 p_center_inh_inh = 1.0 ;        weight_inh_inh = - ratio_inh_exc_w * 0.05
-#p_center_exc_exc = 1.0 ;        weight_exc_exc =  0.6
-#p_center_exc_inh = 1.0 ;        weight_exc_inh =  1.0
+p_center_exc_exc = 1.0 ;        #weight_exc_exc =  0.6
+p_center_exc_inh = 1.0 ;        #weight_exc_inh =  1.0
 
 input_weight_poiss_exc = 1.0     
 #input_weight_poiss_inh = 0.2
