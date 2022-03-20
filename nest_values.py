@@ -13,7 +13,7 @@ results_path = 'results_folder'
 positions_path = 'positions_folder'
 input_images_path = 'input_images_folder' 
 gabor_folder = 'gabor_outputs'
-collect_data_folder = 'massive_search_2/results_' + str(weight_exc_inh) + '_' + str(weight_inh_exc) 
+collect_data_folder = 'massive_search_3/results_' + str(weight_exc_inh) + '_' + str(weight_inh_exc) 
 
 
 #Simulation 
