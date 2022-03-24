@@ -2,9 +2,7 @@
 import sys
 
 
-weight_exc_inh = float(sys.argv[3])
-weight_inh_exc = float(sys.argv[4])
-
+spikes_threshold = float(sys.argv[3])
 
 #Paths
 sd_path = 'spk_detectors_folder' 
@@ -14,7 +12,7 @@ results_path = 'results_folder'
 positions_path = 'positions_folder'
 input_images_path = 'input_images_folder' 
 gabor_folder = 'gabor_outputs'
-collect_data_folder = 'massive_search_4/results_' + str(weight_exc_inh) + '_' + str(weight_inh_exc) 
+collect_data_folder = 'results_threshold'
 
 
 #Simulation 
@@ -104,10 +102,10 @@ rescale = 1.0 ; radius_lat = 3.5#2.5
 
 # Short lateral connections
 ratio_inh_exc_w = 4.0
-p_center_inh_exc = 1.0 ;        weight_inh_exc = - ratio_inh_exc_w * weight_inh_exc
-p_center_inh_inh = 1.0 ;        weight_inh_inh = - ratio_inh_exc_w * 0.05
+p_center_inh_exc = 1.0 ;        weight_inh_exc = - ratio_inh_exc_w * 0.2
+p_center_inh_inh = 1.0 ;        weight_inh_inh = - ratio_inh_exc_w * 0.2
 p_center_exc_exc = 1.0 ;        weight_exc_exc =  0.4
-p_center_exc_inh = 1.0 ;        weight_exc_inh =  weight_exc_inh
+p_center_exc_inh = 1.0 ;        weight_exc_inh =  0.4
 
 input_weight_poiss_exc = 1.0     
 input_weight_poiss_inh = 0.25
@@ -161,8 +159,12 @@ short_range_exc_inh =  {'connection_type': 'convergent',
                        
 
 #Modelos 
-RS_dict =  {'a':0.02, 'b':0.2, 'c':-65.,'d':8.0, 'V_th':30.}
-FS_dict =  {'a':0.1, 'b':0.2, 'c':-65., 'd':2.0, 'V_th':30.}
+spikes_threshold
+#RS_dict =  {'a':0.02, 'b':0.2, 'c':-65.,'d':8.0, 'V_th':30.}
+#FS_dict =  {'a':0.1, 'b':0.2, 'c':-65., 'd':2.0, 'V_th':30.}
+
+RS_dict =  {'a':0.02, 'b':0.2, 'c':-65.,'d':8.0, 'V_th': spikes_threshold}
+FS_dict =  {'a':0.1, 'b':0.2, 'c':-65., 'd':2.0, 'V_th': spikes_threshold}
 
 
 
