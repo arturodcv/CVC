@@ -12,7 +12,7 @@ results_path = 'results_folder'
 positions_path = 'positions_folder'
 input_images_path = 'input_images_folder' 
 gabor_folder = 'gabor_outputs'
-collect_data_folder = 'results_threshold'
+collect_data_folder = 'results_threshold/threshold_' + str(spikes_threshold)
 
 
 #Simulation 
