@@ -159,7 +159,6 @@ short_range_exc_inh =  {'connection_type': 'convergent',
                        
 
 #Modelos 
-spikes_threshold
 #RS_dict =  {'a':0.02, 'b':0.2, 'c':-65.,'d':8.0, 'V_th':30.}
 #FS_dict =  {'a':0.1, 'b':0.2, 'c':-65., 'd':2.0, 'V_th':30.}
 
