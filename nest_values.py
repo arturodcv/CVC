@@ -2,7 +2,7 @@
 import sys
 
 
-spikes_threshold = float(sys.argv[3])
+input_current = float(sys.argv[3])
 
 #Paths
 sd_path = 'spk_detectors_folder' 
@@ -12,7 +12,7 @@ results_path = 'results_folder'
 positions_path = 'positions_folder'
 input_images_path = 'input_images_folder' 
 gabor_folder = 'gabor_outputs'
-collect_data_folder = 'results_threshold/threshold_' + str(spikes_threshold)
+collect_data_folder = 'results_input_current/input_current_' + str(input_current)
 
 
 #Simulation 
@@ -163,8 +163,8 @@ spikes_threshold
 #RS_dict =  {'a':0.02, 'b':0.2, 'c':-65.,'d':8.0, 'V_th':30.}
 #FS_dict =  {'a':0.1, 'b':0.2, 'c':-65., 'd':2.0, 'V_th':30.}
 
-RS_dict =  {'a':0.02, 'b':0.2, 'c':-65.,'d':8.0, 'V_th': spikes_threshold}
-FS_dict =  {'a':0.1, 'b':0.2, 'c':-65., 'd':2.0, 'V_th': spikes_threshold}
+RS_dict =  {'a':0.02, 'b':0.2, 'c':-65.,'d':8.0, 'V_th': 30.0, 'I_e': input_current}
+FS_dict =  {'a':0.1, 'b':0.2, 'c':-65., 'd':2.0, 'V_th': 30.0, 'I_e': input_current}
 
 
 
