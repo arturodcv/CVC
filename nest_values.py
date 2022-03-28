@@ -12,7 +12,7 @@ results_path = 'results_folder'
 positions_path = 'positions_folder'
 input_images_path = 'input_images_folder' 
 gabor_folder = 'gabor_outputs'
-collect_data_folder = 'results_input_current/input_current_' + str(input_current)
+collect_data_folder = 'results_input_current_1/input_current_' + str(input_current)
 
 
 #Simulation 
