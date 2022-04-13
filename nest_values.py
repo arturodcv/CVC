@@ -1,9 +1,6 @@
 
 import sys
 
-
-input_current = float(sys.argv[3])
-
 #Paths
 sd_path = 'spk_detectors_folder' 
 df_folder = 'dataframes_folder'
@@ -12,15 +9,18 @@ results_path = 'results_folder'
 positions_path = 'positions_folder'
 input_images_path = 'input_images_folder' 
 gabor_folder = 'gabor_outputs'
-collect_data_folder = 'results_input_current_1/input_current_' + str(input_current)
+collect_data_folder = 'new_'
 
 
 #Simulation 
+images_selected = ['/sin_5.png', '/sin_6.png', '/sin_7.png','/sin_8.png',
+                   '/sin_9.png', '/sin_10.png', '/sin_11.png','/sin_12.png']
 ms_per_stimuli = 700.0
-simulation_time = ms_per_stimuli * 1 #num_images_to_simulate 
+ms_rest = 500.0
+simulation_time = ms_per_stimuli 
 ms_steady_state_simulation = 0.0
 
-lateral_connections = True
+lateral_connections = False
 
 #Size
 num_hipercolumns = 9
@@ -30,7 +30,7 @@ y_cortex_size = num_hipercolumns * columns_in_hipercolumns
 cortex_size = x_cortex_size * y_cortex_size
 
 #Gabor
-K_size = 900 ;Psi = 0 ; Gamma = 0.7 ; Lambda = 50 ; Sigma = Lambda * 0.36
+K_size = num_hipercolumns * 100 ;Psi = 0 ; Gamma = 0.7 ; Lambda = 50 ; Sigma = Lambda * 0.36
 cut_pixels = 0
 get_output_gabors = 0
 max_rescaling_factor_gabor = 70
@@ -45,8 +45,8 @@ num_orientations = 4
 
 #Layers
 extent = [float(num_hipercolumns), float(num_hipercolumns)]
-ratio_exc_inh = 4
-neurons_per_column_inh = 5
+ratio_exc_inh = 5
+neurons_per_column_inh = 4
 neurons_per_column_exc = ratio_exc_inh * neurons_per_column_inh 
 poisson_bias = 4.0
 
@@ -98,7 +98,7 @@ kappa_j = 0.126 * 1
 kappa_w = 0.14 * 1
 weight_large_range_exc_exc = 0.001
 weight_large_range_exc_inh = 0.02
-rescale = 1.0 ; radius_lat = 3.5#2.5
+rescale = 1.0 ; radius_lat = 3.5
 
 # Short lateral connections
 ratio_inh_exc_w = 4.0
@@ -159,13 +159,8 @@ short_range_exc_inh =  {'connection_type': 'convergent',
                        
 
 #Modelos 
-#RS_dict =  {'a':0.02, 'b':0.2, 'c':-65.,'d':8.0, 'V_th':30.}
-#FS_dict =  {'a':0.1, 'b':0.2, 'c':-65., 'd':2.0, 'V_th':30.}
-
-RS_dict =  {'a':0.02, 'b':0.2, 'c':-65.,'d':8.0, 'V_th': 30.0, 'I_e': input_current}
-FS_dict =  {'a':0.1, 'b':0.2, 'c':-65., 'd':2.0, 'V_th': 30.0, 'I_e': input_current}
-
-
+RS_dict =  {'a':0.02, 'b':0.2, 'c':-65.,'d':8.0, 'V_th':30.}
+FS_dict =  {'a':0.1, 'b':0.2, 'c':-65., 'd':2.0, 'V_th':30.}
 
 #Results (image, video, EEG, frequencies)
 window_time = 0

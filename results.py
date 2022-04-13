@@ -1,67 +1,49 @@
 #!/usr/bin/env python3
-import cv2
 import numpy as np
-import matplotlib.pyplot as plt
-import math
-import pandas as pd
-import os
-from PIL import Image
-import time
-from glob import glob
-import shutil
-from tqdm import tqdm
-from collections import Counter
-from collections import OrderedDict
-from scipy.fft import rfft
-import pickle
-import scipy.signal
-import sys
 
 from nest_values import *
 from funciones   import *
 
-image_selected = sys.argv[1] 
-#Lambda = sys.argv[2] 
-
 with open('seed.txt') as f:
     seed = lines = int(f.readlines()[0])
 
-########################### results for exc/inh/total 
+########################### Results for exc/inh/total 
 
-print("Results for total data: ")
-path = results_path + '/data_total'; create_folder(path) ; remove_contents(path)   
+for num_sim, image in enumerate(images_selected):
+    image = image[1:-4]
+    #Total
+    #print("Results for total data: ")
+    path = results_path + '/data_total'; create_folder(path) ; remove_contents(path)   
 
-data = read_and_fix_dataframe('','total')
-times,complementary_time_list = get_times(data)
-total_eeg = get_eeg(times, complementary_time_list, 'total', '_', path)
-freqs_tot, peaks_tot, idx_tot = get_frequencies(total_eeg,'total','_', path)
-total_eeg = np.sum(total_eeg)
+    data = read_and_fix_dataframe(df_folder  + '/' + str(seed) ,'total', image, num_sim)
+    times,complementary_time_list = get_times(data)
+    total_eeg = get_eeg(times, complementary_time_list, 'total', '_', path)
+    freqs_tot, peaks_tot, idx_tot = get_frequencies(total_eeg,'total','_', path)
+    #print('Total spikes: ', np.sum(total_eeg[200:]))
 
-print("\n\nResults for inhibitory data: ")
-path = results_path + '/data_inh'; create_folder(path) ; remove_contents(path)
+    #Inhibitory
+    #print("\n\nResults for inhibitory data: ")
+    path = results_path + '/data_inh'; create_folder(path) ; remove_contents(path)
 
-data = read_and_fix_dataframe('','inh')
-times,complementary_time_list = get_times(data)
-inh_eeg = get_eeg(times, complementary_time_list, 'inh', '_', path)
-print('inhibitory spikes: ',np.sum(inh_eeg[200:]))
-freqs, peaks, idx = get_frequencies(inh_eeg,'inh','_', path)
+    data = read_and_fix_dataframe(df_folder  + '/' + str(seed) ,'inh', image, num_sim)
+    times,complementary_time_list = get_times(data)
+    inh_eeg = get_eeg(times, complementary_time_list, 'inh', '_', path)
+    freqs, peaks, idx = get_frequencies(inh_eeg,'inh','_', path)
+    #print('Inhibitory spikes: ',np.sum(inh_eeg[200:]))
 
+    #Excitatory
+    #print("\n\nResults for excitatory data: ")
+    path = results_path + '/data_exc'; create_folder(path) ; remove_contents(path)
+    data = read_and_fix_dataframe(df_folder  + '/' + str(seed) ,'exc', image, num_sim)
+    times,complementary_time_list = get_times(data)
+    exc_eeg = get_eeg(times, complementary_time_list, 'exc', '_', path)
+    freqs_exc, peaks_exc, idx_exc = get_frequencies(exc_eeg,'exc','_', path)
+    #print('Excitatory spikes: ',np.sum(exc_eeg[200:]))
 
+    #Save results
+    collect_data(image, exc_eeg, inh_eeg, peaks_exc,freqs_exc,
+                idx_exc,peaks_tot,freqs_tot,idx_tot, seed)
 
-print("\n\nResults for excitatory data: ")
-
-path = results_path + '/data_exc'; create_folder(path) ; remove_contents(path)
-
-data = read_and_fix_dataframe('','exc')
-times,complementary_time_list = get_times(data)
-exc_eeg = get_eeg(times, complementary_time_list, 'exc', '_', path)
-print('excitatory spikes: ',np.sum(exc_eeg[200:]))
-freqs_exc, peaks_exc, idx_exc = get_frequencies(exc_eeg,'exc','_', path)
-
-
-
-#collect_data(image_selected, exc_eeg, inh_eeg, peaks,freqs,idx, seed, Lambda)
-collect_data(image_selected, exc_eeg, inh_eeg, peaks_exc,freqs_exc,idx_exc,peaks_tot,freqs_tot,idx_tot, seed)
 
 #################### results for orientations
 

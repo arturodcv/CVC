@@ -1,3 +1,4 @@
+from optparse import OptParseError
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -16,12 +17,10 @@ import scipy
 from scipy.signal import fftconvolve
 from scipy.signal import find_peaks
 from datetime import datetime
-import sys
+import time 
 
 from nest_values import *
 
-#Lambda = int(sys.argv[3]); Sigma = Lambda * 0.36
-#max_rescaling_factor_gabor =  int(sys.argv[4])
 #################################################### Folders ################################################################
 
 def create_folder(path_name):
@@ -221,10 +220,12 @@ def load_dict(name):
     
 ########################################################## Results ##################################################################
 
-def read_and_fix_dataframe(orientation_to_read,exc_or_inh):
-    data = pd.read_pickle(df_folder + '/data_' + exc_or_inh + '_' + str(orientation_to_read) + '.pkl')
+def read_and_fix_dataframe(path,exc_or_inh, image_name, num_simulation):
+    
+    data = pd.read_csv(path + '/data_' + exc_or_inh + '_' + image_name + '.csv', sep = ' ')
     data = data.sort_values(by=['Time'])
     data = data.set_index([pd.Index([i for i in range(len(data))])])
+    data['Time'] = data['Time'] - num_simulation*(ms_per_stimuli + ms_rest)
     return data
 
 def get_times(data):
@@ -326,31 +327,30 @@ def get_eeg(times, complementary_time_list, orientation_to_read, exc_or_inh, pat
     return eeg
     
 def get_frequencies(eeg,orientation_to_read,exc_or_inh, path):
-    #f, t, Sxx = scipy.signal.spectrogram(np.asarray(eeg), fs = len(eeg)/2)
-    #plt.pcolormesh(t, f, Sxx, shading='gouraud'); plt.ylabel('Frequency [Hz]')
-    #plt.xlabel('Time [sec]'); plt.grid(); 
-    #plt.savefig(path + '/spectogram_' + str(orientation_to_read) + '_' + str(exc_or_inh)+'_.png')
-    #plt.close('all')
     
     freqs, density = scipy.signal.periodogram(eeg[eeg_freqs_from:eeg_freqs_until],fs = 1000, scaling = 'density');
-    peaks, values = find_peaks(density, height= 0.01, distance = 10); 
+    peaks, values = find_peaks(density, height= 0.0001, distance = 10); 
     idx = (- values['peak_heights']).argsort()[:num_max_frequencies]
     
-    for node,peak_value in zip(peaks[idx].tolist(), values['peak_heights'][idx].tolist()):
-        print("Node    Narrowband      Broadband[", broadband_initial , ',' , broadband_end_1, ']')
-        print(node,'     ',np.around(peak_value,2), '     ',np.around(sum(density[broadband_initial:broadband_end_1]),2))
-        print("Node    Narrowband      Broadband[", broadband_initial , ',' , broadband_end_2, ']')
-        print(node,'     ',np.around(peak_value,2), '     ',np.around(sum(density[broadband_initial:broadband_end_2]),2))
+    #for node,peak_value in zip(peaks[idx].tolist(), values['peak_heights'][idx].tolist()):
+        #print("Node    Narrowband      Broadband[", broadband_initial , ',' , broadband_end_1, ']')
+        #print(node,'     ',np.around(peak_value,2), '     ',np.around(sum(density[broadband_initial:broadband_end_1]),2))
+        #print("Node    Narrowband      Broadband[", broadband_initial , ',' , broadband_end_2, ']')
+        #print(node,'     ',np.around(peak_value,2), '     ',np.around(sum(density[broadband_initial:broadband_end_2]),2))
     plt.plot(freqs,density); plt.xlabel("Frequency (Hz)"); plt.ylabel("Frequency Domain (Spectrum) Magnitude")
     plt.grid(); plt.savefig(path + '/periodogram_' + str(orientation_to_read) + '_' + str(exc_or_inh)+'_.png')
     plt.close('all')
     return density, peaks, idx
     
-def collect_data(image_selected, exc_eeg, inh_eeg, peaks_exc, freqs_exc, idx_exc,peaks_tot,freqs_tot,idx_tot, seed):
-    dictionary = {'image_name': image_selected, 'exc_activity': np.sum(exc_eeg), 'inh_activity': np.sum(inh_eeg), 
+def collect_data(image_selected, exc_eeg, inh_eeg, peaks_exc, freqs_exc, 
+                 idx_exc,peaks_tot,freqs_tot,idx_tot, seed):
+    dictionary = {'image_name': image_selected, 'exc_activity': np.sum(exc_eeg), 
+                  'inh_activity': np.sum(inh_eeg), 
                   'exc_spikes_from': np.sum(exc_eeg[200:]), 'inh_spikes_from': np.sum(inh_eeg[200:]),
-                  'node_exc': peaks_exc[idx_exc][0], 'gamma_power_exc': np.around(sum(freqs_exc[broadband_initial:broadband_end_1]),2) ,
-                  'node_tot': peaks_tot[idx_tot][0], 'gamma_power_tot': np.around(sum(freqs_tot[broadband_initial:broadband_end_1]),2) ,
+                  'node_exc': peaks_exc[idx_exc][0], 
+                  'gamma_power_exc': np.around(sum(freqs_exc[broadband_initial:broadband_end_1]),2) ,
+                  'node_tot': peaks_tot[idx_tot][0], 
+                  'gamma_power_tot': np.around(sum(freqs_tot[broadband_initial:broadband_end_1]),2) ,
                   'seed': seed, 
                   'selected_hypercolumns': radius,
                   'ms_stimulus': ms_per_stimuli, 'neurons_per_column_inh': neurons_per_column_inh,
@@ -370,9 +370,10 @@ def collect_data(image_selected, exc_eeg, inh_eeg, peaks_exc, freqs_exc, idx_exc
                   'input_weight_poiss_inh': input_weight_poiss_inh,
                   'exc_eeg': exc_eeg
                   }
-    now = datetime.now()
     create_folder(collect_data_folder)
-    save_dict(dictionary,collect_data_folder + '/results_' + str(image_selected) +'_'+ str(now)[:-7])
+    with open(collect_data_folder + '/results_' + str(image_selected) + '.txt', 'w') as f:
+        print(dictionary, file = f)
+
                   
 def get_kurtosis(data,data_type):
     data_ = data[["x_pos","y_pos"]]
@@ -384,10 +385,67 @@ def get_kurtosis(data,data_type):
     kurt = scipy.stats.kurtosis(counts_mirror)
     return kurt    
                   
+def data_to_df(images_selected, positions, spike_detectors, layers_to_record, msd):
+    create_folder(df_folder + '/' + str(msd))
+    spike_detectors = list(spike_detectors.values())
+    
+    for idx,image in enumerate(images_selected):
+        total_data = []
+        exc_data = []
+        inh_data = []
+
+        time_0 = ms_per_stimuli * idx + ms_rest * idx
+        time_1 = time_0 + ms_per_stimuli
+        
+        for layer, spk in zip(layers_to_record,spike_detectors):
+            data = []
+            files = glob('spike_detector-' + str(spk[0]) + '-*')
+            if files == []:
+                files = glob('spike_detector-' + '0' + str(spk[0]) + '-*')
+
+            for spk_detector in files:
+                df = pd.read_table(spk_detector,names = ['Number','Time'], index_col=False)
+                df = df.query('Time > @time_0 & Time < @time_1')
+                data.append(df)
+
+            data = pd.concat(data)
+            data = data.set_index(([pd.Index([i for i in range(0,len(data))])]))
+            data['Number'] = data.Number.astype(float)
+            data = pd.merge(data,positions,how = 'left',on = 'Number' )
+            data.dropna(subset = ["x_pos","y_pos"], inplace=True) 
+
+            total_data.append(data)
+            if layer[2:5] == 'exc':
+                exc_data.append(data)
+            else: 
+                inh_data.append(data)
+
+            #data.to_pickle(df_folder + '/data_' + str(layer) +'.pkl')
+
+        total_data = pd.concat(total_data)
+        inh_data = pd.concat(inh_data)
+        exc_data = pd.concat(exc_data)
+        total_data.to_csv(df_folder + '/' +str(msd) + '/data_total_' + image[1:-4] + '.csv', index = False, sep = ' ')
+        exc_data.to_csv(df_folder + '/' +str(msd) + '/data_exc_' + image[1:-4] + '.csv', index = False, sep = ' ')
+        inh_data.to_csv(df_folder + '/' +str(msd) + '/data_inh_' + image[1:-4] + '.csv', index = False, sep = ' ')  
+    
+    return None            
+                    
                   
-                  
-                  
-                  
+def get_positions():
+    files = glob(positions_path + '/*')
+    pos = []
+    for file in files:
+        positions = pd.read_table(file,names = ['Number','x_pos','y_pos'], index_col=False, sep = ' ')
+        pos.append(positions)
+
+    positions = pd.concat(pos)
+    dist =  0.1; select = radius; d = dist*select
+
+    x_pos = positions["x_pos"]
+    y_pos = positions["y_pos"]
+    positions = positions.loc[(x_pos**2 + y_pos**2  <= d**2) ]  
+    return positions             
                   
                   
                   
