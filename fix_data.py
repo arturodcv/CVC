@@ -44,8 +44,6 @@ data_to_df(images_selected, positions, spike_detectors, layers_to_record, msd)
 print('Tiempo tratamiento de datos: '+str(np.around(time.time() - t)) + ' s')
 
 
-print("\nExc / Inh / Total number of spikes: ", sum(exc_activity), sum(inh_activity), sum(lengths)); print("\n")
-
 
 
 
