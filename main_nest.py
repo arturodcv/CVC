@@ -47,7 +47,7 @@ create_folder(gabor_folder); remove_contents(gabor_folder)
 create_folder(sd_path); remove_contents(sd_path)
 create_folder(df_folder); remove_contents(df_folder)
 create_folder(positions_path); remove_contents(positions_path)
-create_folder(df_folder + '/' + str(msd))
+#create_folder(df_folder + '/' + str(msd))
 
 t = time.time()
 gabors_to_nest = full_img_filtering(images_to_simulate,num_orientations)
@@ -74,8 +74,8 @@ for i in layers:
     layers_to_record.update(dict(list(layers[i].items())[:2]))
     spike_detectors.update(dict(list(layers[i].items())[2:]))
 
-#save_dict(layers_to_record,'to_record_layer')
-#save_dict(spike_detectors,'to_record_sd')
+save_dict(layers_to_record,'to_record_layer')
+save_dict(spike_detectors,'to_record_sd')
 
 ##################################################### Positions ###############################
 
@@ -84,7 +84,7 @@ for layer,j in zip(layers_to_record,range(0,len(layers_to_record))):
 
 positions = get_positions()
 
-#positions.to_csv('positions_df.txt', index = False, sep = ' ')
+positions.to_csv('positions_df.txt', index = False, sep = ' ')
 
 ############################################################## Simulation #######################################################################
 
@@ -104,11 +104,11 @@ sim_time = time.time() - t
 
 ######################################################### Data Treatment #################################################################
 
-data_to_df(images_selected, positions, spike_detectors, layers_to_record, msd)
+#data_to_df(images_selected, positions, spike_detectors, layers_to_record, msd)
 
-files = glob('spike_detector-*')
-for file in files:
-    os.remove(file)
+#files = glob('spike_detector-*')
+#for file in files:
+#    os.remove(file)
     
 print("Times: \n\n     Building architecture: " + str(np.around(conn_time/60,2)) +"m")
 print("\n     Image processing: " + str(np.around(gabors_time,2)) +"s")
