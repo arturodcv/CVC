@@ -100,10 +100,6 @@ sim_time = time.time() - t
 
 ######################################################### Data Treatment #################################################################
 
-files = glob('*spike_detector*')
-for file in files:
-    shutil.move(file, sd_path + '/' + file)
-    
 #data_to_df(images_selected, positions, spike_detectors, layers_to_record, msd)
 
     
