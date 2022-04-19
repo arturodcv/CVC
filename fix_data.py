@@ -37,6 +37,7 @@ with open('seed.txt') as f:
 
 
 ######################################################### To dataframe ###################################################################
+t = time.time()
 
 data_to_df(images_selected, positions, spike_detectors, layers_to_record, msd)
 
