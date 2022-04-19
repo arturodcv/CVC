@@ -91,7 +91,7 @@ t = time.time()
 
 null_images_dict = {}
 for i in range(num_orientations):
-    null_images_dict['orientation_' + str(i*180/num_orientations)] = [0.0 for i in range(cortex_size)]
+    null_images_dict['orientation_' + str(i*180/num_orientations)] = [0.0] * cortex_size
 
 for i in range(num_images_to_simulate):
     set_poisson_values(gabors_to_nest['image_' + str(i)], poiss_layers, num_orientations)
