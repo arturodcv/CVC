@@ -11,10 +11,6 @@ from glob import glob
 from nest_values import *
 from funciones   import *
 
-files = glob('spike_detector-*')
-for file in files:
-    os.remove(file)
-
 images_to_simulate = [input_images_path + image for image in images_selected ]  
 num_images_to_simulate = len(images_to_simulate)
 
@@ -104,11 +100,12 @@ sim_time = time.time() - t
 
 ######################################################### Data Treatment #################################################################
 
+files = glob('*spike_detector*')
+for file in files:
+    shutil.move(file, sd_path + '/' + file)
+    
 #data_to_df(images_selected, positions, spike_detectors, layers_to_record, msd)
 
-#files = glob('spike_detector-*')
-#for file in files:
-#    os.remove(file)
     
 print("Times: \n\n     Building architecture: " + str(np.around(conn_time/60,2)) +"m")
 print("\n     Image processing: " + str(np.around(gabors_time,2)) +"s")
