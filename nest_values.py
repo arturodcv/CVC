@@ -1,4 +1,3 @@
-
 import sys
 
 #Paths
@@ -15,8 +14,8 @@ collect_data_folder = 'new_'
 #Simulation 
 images_selected = ['/sinusoid_5.png', '/sinusoid_6.png', '/sinusoid_7.png','/sinusoid_8.png',
                    '/sinusoid_9.png', '/sinusoid_10.png', '/sinusoid_11.png','/sinusoid_12.png']
-ms_per_stimuli = 700.0
-ms_rest = 500.0
+ms_per_stimuli = 400.0
+ms_rest = 100.0
 simulation_time = ms_per_stimuli 
 ms_steady_state_simulation = 0.0
 
@@ -45,8 +44,8 @@ num_orientations = 4
 
 #Layers
 extent = [float(num_hipercolumns), float(num_hipercolumns)]
-ratio_exc_inh = 5
-neurons_per_column_inh = 4
+ratio_exc_inh = 2
+neurons_per_column_inh = 2
 neurons_per_column_exc = ratio_exc_inh * neurons_per_column_inh 
 poisson_bias = 4.0
 
@@ -108,7 +107,7 @@ p_center_exc_exc = 1.0 ;        weight_exc_exc =  0.4
 p_center_exc_inh = 1.0 ;        weight_exc_inh =  0.4
 
 input_weight_poiss_exc = 1.0     
-input_weight_poiss_inh = 0.25
+input_weight_poiss_inh = 0.5
                
 dict_poiss_to_v1_exc  = {'connection_type': 'divergent','weights': input_weight_poiss_exc ,
                          'mask': {'grid': {'rows': 1, 'columns': 1}}, 
