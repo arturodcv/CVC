@@ -47,6 +47,7 @@ create_folder(gabor_folder); remove_contents(gabor_folder)
 create_folder(sd_path); remove_contents(sd_path)
 create_folder(df_folder); remove_contents(df_folder)
 create_folder(positions_path); remove_contents(positions_path)
+create_folder(df_folder + '/' + str(msd))
 
 t = time.time()
 gabors_to_nest = full_img_filtering(images_to_simulate,num_orientations)
