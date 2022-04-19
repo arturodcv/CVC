@@ -11,6 +11,10 @@ from glob import glob
 from nest_values import *
 from funciones   import *
 
+files = glob('spike_detector-*')
+for file in files:
+    os.remove(file)
+
 images_to_simulate = [input_images_path + image for image in images_selected ]  
 num_images_to_simulate = len(images_to_simulate)
 
