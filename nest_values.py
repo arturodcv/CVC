@@ -13,8 +13,8 @@ collect_data_folder = 'new_'
 
 
 #Simulation 
-images_selected = ['/sin_5.png', '/sin_6.png', '/sin_7.png','/sin_8.png',
-                   '/sin_9.png', '/sin_10.png', '/sin_11.png','/sin_12.png']
+images_selected = ['/sinusoid_5.png', '/sinusoid_6.png', '/sinusoid_7.png','/sinusoid_8.png',
+                   '/sinusoid_9.png', '/sinusoid_10.png', '/sinusoid_11.png','/sinusoid_12.png']
 ms_per_stimuli = 700.0
 ms_rest = 500.0
 simulation_time = ms_per_stimuli 
