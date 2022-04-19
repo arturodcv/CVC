@@ -19,7 +19,7 @@ ms_rest = 500.0
 simulation_time = ms_per_stimuli 
 ms_steady_state_simulation = 0.0
 
-lateral_connections = False
+lateral_connections = True
 
 #Size
 num_hipercolumns = 9
