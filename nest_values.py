@@ -44,8 +44,8 @@ num_orientations = 4
 
 #Layers
 extent = [float(num_hipercolumns), float(num_hipercolumns)]
-ratio_exc_inh = 2
-neurons_per_column_inh = 2
+ratio_exc_inh = 1
+neurons_per_column_inh = 1
 neurons_per_column_exc = ratio_exc_inh * neurons_per_column_inh 
 poisson_bias = 4.0
 
