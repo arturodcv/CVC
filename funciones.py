@@ -386,7 +386,7 @@ def get_kurtosis(data,data_type):
     return kurt    
                   
 def data_to_df(images_selected, positions, spike_detectors, layers_to_record, msd):
-    create_folder(df_folder + '/' + str(msd))
+    #create_folder(df_folder + '/' + str(msd))
     spike_detectors = list(spike_detectors.values())
     
     for idx,image in enumerate(images_selected):
