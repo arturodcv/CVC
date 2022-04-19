@@ -386,7 +386,7 @@ def get_kurtosis(data,data_type):
     return kurt    
                   
 def data_to_df(images_selected, positions, spike_detectors, layers_to_record, msd):
-    #create_folder(df_folder + '/' + str(msd))
+    create_folder(df_folder + '/' + str(msd))
     spike_detectors = list(spike_detectors.values())
     
     for idx,image in enumerate(images_selected):
@@ -399,9 +399,9 @@ def data_to_df(images_selected, positions, spike_detectors, layers_to_record, ms
         
         for layer, spk in zip(layers_to_record,spike_detectors):
             data = []
-            files = glob('spike_detector-' + str(spk[0]) + '-*')
+            files = glob(sd_path + '/spike_detector-' + str(spk[0]) + '-*')
             if files == []:
-                files = glob('spike_detector-' + '0' + str(spk[0]) + '-*')
+                files = glob(sd_path + '/spike_detector-' + '0' + str(spk[0]) + '-*')
 
             for spk_detector in files:
                 df = pd.read_table(spk_detector,names = ['Number','Time'], index_col=False)
