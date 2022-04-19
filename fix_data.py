@@ -25,6 +25,10 @@ create_folder(positions_path); #remove_contents(positions_path)
     
 ########################################################### Read files ###################################################################
 
+files = glob('*spike_detector*')
+for file in files:
+    shutil.move(file, sd_path + '/' + file)
+    
 positions = pd.read_csv('positions_df.txt', sep = ' ')
 layers_to_record = load_dict('to_record_layer')
 spike_detectors = load_dict('to_record_sd')
