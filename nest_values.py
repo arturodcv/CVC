@@ -47,7 +47,7 @@ extent = [float(num_hipercolumns), float(num_hipercolumns)]
 ratio_exc_inh = 4
 neurons_per_column_inh = 5
 neurons_per_column_exc = ratio_exc_inh * neurons_per_column_inh 
-poisson_bias = 4.0
+poisson_bias = 0.0
 
 #Poisson
 factor = 430.9
