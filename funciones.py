@@ -422,19 +422,19 @@ def data_to_df(images_selected, positions, spike_detectors, layers_to_record, ms
             else: 
                 inh_data.append(data)
 
-        all_data = pd.concat(all_data)
-        all_data = all_data.set_index(([pd.Index([i for i in range(0,len(all_data))])]))
-        all_data['Number'] = all_data.Number.astype(float)
-        all_data = pd.merge(all_data,positions,how = 'left',on = 'Number' )
-        all_data.dropna(subset = ["x_pos","y_pos"], inplace=True) 
-        all_data.to_csv(df_folder + '/' +str(msd) + '/all_total_' +  '.csv', index = False, sep = ' ')
-
         total_data = pd.concat(total_data)
         inh_data = pd.concat(inh_data)
         exc_data = pd.concat(exc_data)
         total_data.to_csv(df_folder + '/' +str(msd) + '/data_total_' + image[1:-4] + '.csv', index = False, sep = ' ')
         exc_data.to_csv(df_folder + '/' +str(msd) + '/data_exc_' + image[1:-4] + '.csv', index = False, sep = ' ')
         inh_data.to_csv(df_folder + '/' +str(msd) + '/data_inh_' + image[1:-4] + '.csv', index = False, sep = ' ')  
+    
+    all_data = pd.concat(all_data)
+    all_data = all_data.set_index(([pd.Index([i for i in range(0,len(all_data))])]))
+    all_data['Number'] = all_data.Number.astype(float)
+    all_data = pd.merge(all_data,positions,how = 'left',on = 'Number' )
+    all_data.dropna(subset = ["x_pos","y_pos"], inplace=True) 
+    all_data.to_csv(df_folder + '/' +str(msd) + '/all_total_' +  '.csv', index = False, sep = ' ')
     
     return None            
                     
