@@ -15,7 +15,7 @@ collect_data_folder = 'new_'
 images_selected = ['/sinusoid_5.png', '/sinusoid_6.png', '/sinusoid_7.png','/sinusoid_8.png',
                    '/sinusoid_9.png', '/sinusoid_10.png', '/sinusoid_11.png','/sinusoid_12.png']
 ms_per_stimuli = 700.0
-ms_rest = 500.0
+ms_rest = 100.0
 simulation_time = ms_per_stimuli 
 ms_steady_state_simulation = 0.0
 
