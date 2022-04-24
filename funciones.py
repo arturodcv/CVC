@@ -388,6 +388,7 @@ def get_kurtosis(data,data_type):
 def data_to_df(images_selected, positions, spike_detectors, layers_to_record, msd):
     create_folder(df_folder + '/' + str(msd))
     spike_detectors = list(spike_detectors.values())
+    all_data = []
     
     for idx,image in enumerate(images_selected):
         total_data = []
@@ -405,6 +406,7 @@ def data_to_df(images_selected, positions, spike_detectors, layers_to_record, ms
 
             for spk_detector in files:
                 df = pd.read_table(spk_detector,names = ['Number','Time'], index_col=False)
+                all_data.append(df)
                 df = df.query('Time > @time_0 & Time < @time_1')
                 data.append(df)
 
@@ -413,6 +415,10 @@ def data_to_df(images_selected, positions, spike_detectors, layers_to_record, ms
             data['Number'] = data.Number.astype(float)
             data = pd.merge(data,positions,how = 'left',on = 'Number' )
             data.dropna(subset = ["x_pos","y_pos"], inplace=True) 
+            
+            
+            
+            
 
             total_data.append(data)
             if layer[2:5] == 'exc':
@@ -420,7 +426,12 @@ def data_to_df(images_selected, positions, spike_detectors, layers_to_record, ms
             else: 
                 inh_data.append(data)
 
-            #data.to_pickle(df_folder + '/data_' + str(layer) +'.pkl')
+        all_data = pd.concat(all_data)
+        all_data = all_data.set_index(([pd.Index([i for i in range(0,len(data))])]))
+        all_data['Number'] = all_data.Number.astype(float)
+        all_data = pd.merge(all_data,positions,how = 'left',on = 'Number' )
+        all_data.dropna(subset = ["x_pos","y_pos"], inplace=True) 
+        all_data.to_csv(df_folder + '/' +str(msd) + '/all_total_' +  '.csv', index = False, sep = ' ')
 
         total_data = pd.concat(total_data)
         inh_data = pd.concat(inh_data)
