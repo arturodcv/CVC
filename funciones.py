@@ -415,10 +415,6 @@ def data_to_df(images_selected, positions, spike_detectors, layers_to_record, ms
             data['Number'] = data.Number.astype(float)
             data = pd.merge(data,positions,how = 'left',on = 'Number' )
             data.dropna(subset = ["x_pos","y_pos"], inplace=True) 
-            
-            
-            
-            
 
             total_data.append(data)
             if layer[2:5] == 'exc':
@@ -427,7 +423,7 @@ def data_to_df(images_selected, positions, spike_detectors, layers_to_record, ms
                 inh_data.append(data)
 
         all_data = pd.concat(all_data)
-        all_data = all_data.set_index(([pd.Index([i for i in range(0,len(data))])]))
+        all_data = all_data.set_index(([pd.Index([i for i in range(0,len(all_data))])]))
         all_data['Number'] = all_data.Number.astype(float)
         all_data = pd.merge(all_data,positions,how = 'left',on = 'Number' )
         all_data.dropna(subset = ["x_pos","y_pos"], inplace=True) 
